@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+    http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <secured attributes="ROLE_USER" />
+
+    <on-start>
+        <evaluate expression="address1" result="flowScope.address1"/>
+        <evaluate expression="address2" result="flowScope.address2"/>
+        <set name="flowScope.shoppingCart" value="shoppingCart"/>
+    </on-start>
+
+    <view-state id="addressPage1" view="billingAddress" model="address1">
+        <on-render>
+            <set name="flowScope.customer" value="customerService.findByUsername()"/>
+        </on-render>
+
+        <transition on="register" to="addressPage1">
+            <evaluate expression="customerService.saveAddr(address1, 1)"/>
+        </transition>
+        <transition on="edit" to="addressPage1">
+            <evaluate expression="customerService.editAddr(address1, 1)"/>
+        </transition>
+        <transition on="cancelOperation" to="cancelOperation" bind="false"/>
+        <transition on="nextStep" to="addressPage2" bind="false"/>
+        <transition on="prevStep" to="checkOut" bind="false"/>
+    </view-state>
+
+    <view-state id="addressPage2" view="shippingAddress" model="address2">
+        <on-render>
+            <set name="flowScope.customer" value="customerService.findByUsername()"/>
+        </on-render>
+
+        <transition on="register" to="addressPage2" >
+            <evaluate expression="customerService.saveAddr(address2, 2)"/>
+        </transition>
+        <transition on="edit" to="addressPage2">
+            <evaluate expression="customerService.editAddr(address2, 2)"/>
+        </transition>
+        <transition on="cancelOperation" to="cancelOperation" bind="false"/>
+        <transition on="nextStep" to="addressSaved" bind="false"/>
+        <transition on="prevStep" to="addressPage1" bind="false"/>
+    </view-state>
+
+    <end-state id="addressSaved" view="externalRedirect:contextRelative:/home"/>
+    <end-state id="checkOut" view="externalRedirect:contextRelative:/home"/>
+    <end-state id="cancelOperation" view="externalRedirect:contextRelative:/home"/>
+
+</flow>

@@ -1,0 +1,75 @@
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN" "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="baseLayout" template="/WEB-INF/pages/template/layout.jsp">
+        <put-attribute name="title" value="Default Layout" />
+        <put-attribute name="header" value="/WEB-INF/pages/template/header.jsp" />
+        <put-attribute name="menu" value="/WEB-INF/pages/template/menu.jsp" />
+        <put-attribute name="body" value="" />
+        <put-attribute name="footer" value="/WEB-INF/pages/template/footer.jsp" />
+    </definition>
+
+    <definition name="home" extends="baseLayout">
+        <put-attribute name="title" value="Home" />
+        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/home.jsp" />
+    </definition>
+
+    <definition name="page" extends="baseLayout">
+        <put-attribute name="title" value="Page" />
+        <put-attribute name="body" value="/WEB-INF/pages/template/page.jsp" />
+    </definition>
+    
+    <definition name="viewCart" extends="baseLayout">
+        <put-attribute name="title" value="Shopping Cart"/>
+        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/viewCart.jsp"/>
+    </definition>
+
+    <definition name="account/login" template="/WEB-INF/pages/account/login.jsp">
+        <put-attribute name="title" value="Login"/>
+    </definition>
+
+    <definition name="account/logout" template="/WEB-INF/pages/account/logout.jsp">
+        <put-attribute name="title" value="Logout"/>
+    </definition>
+
+    <definition name="account/registrationForm" template="/WEB-INF/pages/account/registrationForm.jsp">
+        <put-attribute name="title" value="Register"/>
+    </definition>
+
+    <definition name="billingAddress" extends="baseLayout">
+        <put-attribute name="title" value="Set Billing Address"/>
+        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/billingAddress.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/pages/template/emptyMenu.jsp"/>
+    </definition>
+
+    <definition name="shippingAddress" extends="baseLayout">
+        <put-attribute name="title" value="Set Shipping Address"/>
+        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/shippingAddress.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/pages/template/emptyMenu.jsp"/>
+    </definition>
+
+    <definition name="payment" extends="baseLayout">
+        <put-attribute name="title" value="Payment"/>
+        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/payment.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/pages/template/emptyMenu.jsp"/>
+    </definition>
+
+    <definition name="confirmOrder" extends="baseLayout">
+        <put-attribute name="title" value="Confirm Order"/>
+        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/confirmOrder.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/pages/template/emptyMenu.jsp"/>
+    </definition>
+
+    <definition name="finalStep" extends="baseLayout">
+        <put-attribute name="title" value="Invoice"/>
+        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/finalStep.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/pages/template/emptyMenu.jsp"/>
+    </definition>
+
+    <definition name="addProduct" extends="baseLayout">
+        <put-attribute name="title" value="Add a Product"/>
+        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/addProduct.jsp"/>
+        <put-attribute name="menu" value="/WEB-INF/pages/template/emptyMenu.jsp"/>
+    </definition>
+
+</tiles-definitions>    

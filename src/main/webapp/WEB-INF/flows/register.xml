@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+    http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <var name="customer" class="com.springapp.mvc.model.Customer"/>
+
+    <view-state id="registration" view="/account/register" model="customer" >
+        <transition on="submitRegistration" to="addAccount" />
+        <transition on="cancelRegistration" to="cancelRegistration"/>
+    </view-state>
+
+    <action-state id="addAccount">
+        <evaluate expression="customerService.save(customer)" />
+        <transition to="accountAdded"/>
+    </action-state>
+
+    <end-state id="accountAdded" view="externalRedirect:contextRelative:/home"/>
+    <end-state id="cancelRegistration" view="externalRedirect:contextRelative:/home"/>
+</flow>

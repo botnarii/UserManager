@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<flow xmlns="http://www.springframework.org/schema/webflow"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.springframework.org/schema/webflow
+    http://www.springframework.org/schema/webflow/spring-webflow.xsd">
+
+    <!--<secured attributes="ROLE_USER"/>-->
+
+    <on-start>
+        <set name="conversationScope.products" value="cartService.getProducts()" />
+        <set name="conversationScope.shoppingCart" value="shoppingCart"/>
+    </on-start>
+
+    <view-state id="viewCart" view="viewCart">
+        <transition on="addToCart" to="addProductToCart"/>
+        <transition on="delete" to="removeProductFromCart"/>
+        <transition on="customerAddress" to="setAddress"/>
+    </view-state>
+
+    <subflow-state id="addProductToCart" subflow="addToCart">
+        <transition on="productAdded" to="viewCart"/>
+    </subflow-state>
+
+    <subflow-state id="removeProductFromCart" subflow="removeFromCart">
+        <transition on="productRemoved" to="viewCart"/>
+    </subflow-state>
+
+    <subflow-state id="setAddress" subflow="setAddress">
+        <transition on="addressSaved" to="payment"/>
+        <transition on="checkOut" to="viewCart"/>
+        <transition on="cancelOperation" to="shop"/>
+    </subflow-state>
+
+    <subflow-state id="payment" subflow="payment">
+        <transition on="setAddress" to="setAddress"/>
+        <transition on="cancelOperation" to="shop"/>
+        <transition on="checkOut" to="confirmOrder"/>
+    </subflow-state>
+
+    <action-state id="backToCart" >
+        <set name="flashScope.products" value="cartService.getProducts()" />
+        <transition to="viewCart"/>
+    </action-state>
+    
+    <view-state id="confirmOrder" view="confirmOrder">
+        <transition on="pack" to="finalStep">
+            <evaluate expression="customerService.packOrder(shoppingCart)"/>
+        </transition>
+    </view-state>
+
+    <view-state id="finalStep" view="finalStep">
+        <var name="ordline" class="com.springapp.mvc.model.OrderLine"/>
+        <var name="order" class="com.springapp.mvc.model.Order"/>
+        <on-render>
+            <set name="flowScope.customer" value="customerService.findByUsername()"/>
+            <set name="flashScope.order" value="customerService.findLatestOrderByCustomer(customer)"/>
+            <set name="viewScope.orderlines" value="customerService.findOrderLines(customer)" />
+            <set name="viewScope.invoice" value="customerService.createInvoice(customer)"/>
+        </on-render>
+
+        <transition on="orderOk" to="orderFinished">
+            <evaluate expression="shoppingCart.clear()"/>
+        </transition>
+
+    </view-state>
+
+    <end-state id="shop" view="externalRedirect:contextRelative:/home" />
+    <end-state id="orderFinished" view="externalRedirect:contextRelative:/home" />
+
+    <global-transitions>
+        <transition on="cancelCheckout" to="shop"/>
+    </global-transitions>
+
+</flow>
