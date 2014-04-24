@@ -1,5 +1,6 @@
 package com.springapp.mvc.controller;
 
+import com.springapp.mvc.model.AddProductForm;
 import com.springapp.mvc.model.Product;
 import com.springapp.mvc.model.UploadItem;
 import com.springapp.mvc.service.ProductService;
@@ -10,17 +11,16 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
-import javax.sql.rowset.serial.SerialBlob;
+import javax.validation.Valid;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Date;
 
 
 @Controller
@@ -35,54 +35,54 @@ public class UploadController {
         uploadedImg = new UploadItem();
     }
 
-    @RequestMapping(value = "/addProduct")
+    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
     public String addProduct(Model model) {
+        model.addAttribute("productForm", new AddProductForm());
         if (isAdmin()) {
-            model.addAttribute("article", new Product());
             return "addProduct";
         }
         return "home";
     }
 
-//    @RequestMapping(value = "/get/{value}", method = RequestMethod.GET)
-//    public void get(HttpServletResponse response, @PathVariable String value){
-//        try {
-//
-//            response.setContentType(ufile.type);
-//            response.setContentLength(ufile.length);
-//            FileCopyUtils.copy(ufile.bytes, response.getOutputStream());
-//
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//    }
-
-    @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String upload(@ModelAttribute("article") Product article, @RequestParam("imgfile") MultipartFile file) {
-        Date today = new Date();
-        if (!file.isEmpty()) {
-            try {
-                Blob blob = getBlobData(file);
-
-                article.setImage(blob);
-                article.setDateTime(new Timestamp(today.getTime()));
-                productService.save(article);
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+    @RequestMapping(value = "/addProduct/{value}", method = RequestMethod.GET)
+    public String get(Model model, @PathVariable String value){
+        if (value.equals("error")) {
+            model.addAttribute("imgError", "Bad image file!");
+            model.addAttribute("imgSuccess", "");
+        } else if (value.equals("noerror")){
+            model.addAttribute("imgSuccess", "Uploaded Successfully!");
+            model.addAttribute("imgError", "");
+        } else {
+            model.addAttribute("imgSuccess", "");
+            model.addAttribute("imgError", "");
         }
         return "redirect:/addProduct";
     }
 
-    @RequestMapping("/download/{fileId}")
-    public String download(@PathVariable("fileId")
-                           Long fileId, HttpServletResponse response) {
+    @RequestMapping(value = "/upload", method = RequestMethod.POST)
+    public String upload(@Valid @ModelAttribute("productForm") AddProductForm product, BindingResult result, @RequestParam("imgfile") MultipartFile file) {
 
-//        File doc = fileDao.get(fileId);
+        if (file.isEmpty() || file.getSize() == 0) {
+            result.rejectValue("image", "product.form.badimg");
+            return "addProduct";
+        } else {
+            product.setImage(file);
+        }
+        if (result.hasErrors()) {
+            System.out.println("has errors!");
+            return "addProduct";
+        } else {
+            System.out.println("has no errors!");
+            Product newProduct = productService.createProductFromModel(product);
+            if (null != newProduct) {
+                productService.save(newProduct);
+            }
+            return "redirect:/addProduct/noerror";
+        }
+    }
+
+    @RequestMapping("/download/{fileId}")
+    public String download(@PathVariable("fileId") Long fileId, HttpServletResponse response) {
         Product product = productService.getProduct(fileId);
         Blob doc = product.getImage();
 
@@ -101,11 +101,6 @@ public class UploadController {
         }
 
         return null;
-    }
-
-    public Blob getBlobData(MultipartFile file) throws IOException, SQLException {
-        byte[] bytes = file.getBytes();
-        return new SerialBlob(bytes);
     }
 
     private boolean isAdmin() {

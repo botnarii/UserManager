@@ -10,27 +10,18 @@
                 <h2 class="panel-title product-header">Add a Product</h2>
             </div>
             <div class="panel-body">
-                <!--  Form 1 -->
-                    <%--<i>Uploading File Without Ajax</i><br/>--%>
-                    <%--<form id="form1" method="post" action="upload" enctype="multipart/form-data">--%>
-
-                    <%--<!-- File input -->--%>
-                    <%--<input name="file" id="file" type="file" /><br/>--%>
-
-                    <%--<input type="submit" value="Upload" />--%>
-                    <%--</form>--%>
-                    <%--<hr/>--%>
-
-                <!--  Form 2 -->
-                    <%--<i>Uploading File With Ajax</i><br/>--%>
-                <form:form commandName="article" id="imgUpload" method="post" action="upload" enctype="multipart/form-data">
+                <div id="result">
+                    <span style="color: red"><c:out value="${param.imgError}"/></span>
+                    <span style="color: green; font-weight: bold"><c:out value="${param.imgSuccess}"/></span>
+                </div>
+                <form:form commandName="productForm" id="imgUpload" method="post" action="upload" enctype="multipart/form-data">
                     <div class="row form-group">
                         <div class="container-fluid">
                             <div class="row">
                                 <div id="form-group-prodname" class="form-group col-lg-4">
                                     <label class="control-label" for="name">Product name:</label>
                                     <form:input name="name" id="name" placeholder="Product name"  path="name" cssClass="form-control"/>
-                                    <form:errors id="error-email" path="name" cssClass="help-block error-box"/>
+                                    <form:errors path="name" cssClass="help-block error-box"/>
                                 </div>
                             </div>
                             <div class="row">
@@ -107,24 +98,7 @@
                             </div>
                         </div>
                     </div>
-                    <%--<form:input name="name" id="name" placeholder="Product name"  path="name"/><br/>--%>
-                    <%--<form:input name="unitPrice" id="unitPrice" placeholder="Product unit price"  path="unitPrice"/><br/>--%>
-                    <%--<form:input name="inStockQty" id="inStockQty" placeholder="Products in stock"  path="inStockQty"/><br/>--%>
-                    <%--<form:input name="brand" id="brand" placeholder="Product brand"  path="brand"/><br/>--%>
-                    <%--<form:input name="currentOffer" id="currentOffer" placeholder="Current Offer"  path="currentOffer"/><br/>--%>
-                    <%--<form:input name="displaySize" id="displaySize" placeholder="Display Size"  path="displaySize"/><br/>--%>
-                    <%--<form:textarea name="descr" id="descr" placeholder="Product description..." rows="5" cols="50" path="description"/><br/>--%>
-                    <%--<!-- File input -->--%>
-                    <%--<form:label path="image">Product Image</form:label>--%>
-                    <%--<input name="imgfile" id="imgfile" type="file"/><br/>--%>
-                    <%--<input type="submit" value="Upload" />--%>
                 </form:form>
-
-                    <%--<button value="Submit" onclick="uploadJqueryForm()" >Upload</button><i>Using JQuery Form Plugin</i><br/>--%>
-                    <%--<button value="Submit" onclick="uploadFormData()" >Upload</button><i>Using FormData Object</i>--%>
-
-                <div id="result">
-                </div>
             </div>
         </sec:authorize>
     </div>

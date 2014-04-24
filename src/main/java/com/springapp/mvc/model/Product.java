@@ -1,10 +1,10 @@
 package com.springapp.mvc.model;
 
 
-import com.sun.deploy.net.HttpResponse;
-import org.springframework.http.HttpRequest;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Blob;
@@ -18,16 +18,17 @@ public class Product implements Comparable<Product>, Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PRODUCT_ID")
     private long productId;
+    @NotEmpty
+    @Size(min = 2, max = 20, message = "Too long or too short!")
     @Column(name = "PRODUCT_NAME")
     private String name;
+    @Size(max = 600, message = "Description too long!")
     @Column(name = "DESCRIPTION", length = 600)
     private String description;
     @Column(name = "UNIT_PRICE")
     private BigDecimal unitPrice;
     @Column(name = "IN_STOCK_QTY")
     private int inStockQty;
-//    @Column(name = "IMG_URL")
-//    private String imgUrl;
     @Column(name="PRODUCT_IMAGE")
     @Lob
     private Blob image;
@@ -40,14 +41,12 @@ public class Product implements Comparable<Product>, Serializable {
     @Column(name = "ADDED_DATE")
     private Timestamp dateTime;
 
-
     public Product(){}
 
-    public Product(String description, BigDecimal unitPrice, int inStockQty, String imgUrl) {
+    public Product(String description, BigDecimal unitPrice, int inStockQty) {
         this.description = description;
         this.unitPrice = unitPrice;
         this.inStockQty = inStockQty;
-//        this.imgUrl = imgUrl;
     }
 
     public Product(long productId, String description, BigDecimal unitPrice, int inStockQty) {
@@ -55,6 +54,18 @@ public class Product implements Comparable<Product>, Serializable {
         this.unitPrice = unitPrice;
         this.inStockQty = inStockQty;
         this.productId = productId;
+    }
+
+    public Product(String name, String description, BigDecimal unitPrice, int inStockQty, Blob image, String brand, String currentOffer, int displaySize, Timestamp dateTime) {
+        this.name = name;
+        this.description = description;
+        this.unitPrice = unitPrice;
+        this.inStockQty = inStockQty;
+        this.image = image;
+        this.brand = brand;
+        this.currentOffer = currentOffer;
+        this.displaySize = displaySize;
+        this.dateTime = dateTime;
     }
 
     public long getProductId() {
@@ -88,14 +99,6 @@ public class Product implements Comparable<Product>, Serializable {
     public void setInStockQty(int inStockQty) {
         this.inStockQty = inStockQty;
     }
-//
-//    public String getImgUrl() {
-//        return imgUrl;
-//    }
-//
-//    public void setImgUrl(String imgUrl) {
-//        this.imgUrl = imgUrl;
-//    }
 
     public Blob getImage() {
         return image;

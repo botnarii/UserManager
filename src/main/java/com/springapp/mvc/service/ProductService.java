@@ -1,6 +1,7 @@
 package com.springapp.mvc.service;
 
 
+import com.springapp.mvc.model.AddProductForm;
 import com.springapp.mvc.model.Product;
 import com.springapp.mvc.model.ShoppingCart;
 
@@ -18,7 +19,7 @@ public interface ProductService {
 
     List<String> getShippingOptions();
 
-    void submitOrderForPayment();
+    Product createProductFromModel(AddProductForm article);
 
     void deleteAllProducts();
     void deleteOneProduct(long productId);
