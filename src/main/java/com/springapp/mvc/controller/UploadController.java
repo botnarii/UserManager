@@ -13,7 +13,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
@@ -27,13 +26,8 @@ import java.util.Date;
 @Controller
 public class UploadController {
 
-    private final static String UPLOADS_DIR = "/images";
-
     @Autowired
     private ProductService productService;
-
-    @Autowired
-    private ServletContext context;
 
     UploadItem uploadedImg;
     public UploadController(){
@@ -50,8 +44,8 @@ public class UploadController {
         return "home";
     }
 
-    @RequestMapping(value = "/get/{value}", method = RequestMethod.GET)
-    public void get(HttpServletResponse response, @PathVariable String value){
+//    @RequestMapping(value = "/get/{value}", method = RequestMethod.GET)
+//    public void get(HttpServletResponse response, @PathVariable String value){
 //        try {
 //
 //            response.setContentType(ufile.type);
@@ -62,22 +56,24 @@ public class UploadController {
 //            // TODO Auto-generated catch block
 //            e.printStackTrace();
 //        }
-    }
+//    }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
     public String upload(@ModelAttribute("article") Product article, @RequestParam("imgfile") MultipartFile file) {
         Date today = new Date();
-        try {
-            Blob blob = getBlobData(file);
+        if (!file.isEmpty()) {
+            try {
+                Blob blob = getBlobData(file);
 
-            article.setImage(blob);
-            article.setDateTime(new Timestamp(today.getTime()));
-            productService.save(article);
+                article.setImage(blob);
+                article.setDateTime(new Timestamp(today.getTime()));
+                productService.save(article);
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return "redirect:/addProduct";
     }
