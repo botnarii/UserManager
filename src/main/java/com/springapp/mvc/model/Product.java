@@ -18,12 +18,11 @@ public class Product implements Comparable<Product>, Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "PRODUCT_ID")
     private long productId;
-    @NotEmpty
-    @Size(min = 2, max = 20, message = "Too long or too short!")
+
     @Column(name = "PRODUCT_NAME")
     private String name;
-    @Size(max = 600, message = "Description too long!")
-    @Column(name = "DESCRIPTION", length = 600)
+
+    @Column(name = "DESCRIPTION", length = 3000)
     private String description;
     @Column(name = "UNIT_PRICE")
     private BigDecimal unitPrice;

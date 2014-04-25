@@ -24,27 +24,27 @@ import java.sql.SQLException;
 
 
 @Controller
-public class UploadController {
+public class ProductsController {
 
     @Autowired
     private ProductService productService;
 
     UploadItem uploadedImg;
-    public UploadController(){
+    public ProductsController(){
         System.out.println("init RestController");
         uploadedImg = new UploadItem();
     }
 
-    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
+    @RequestMapping(value = "/productManagement", method = RequestMethod.GET)
     public String addProduct(Model model) {
         model.addAttribute("productForm", new AddProductForm());
         if (isAdmin()) {
-            return "addProduct";
+            return "productManagement";
         }
         return "home";
     }
 
-    @RequestMapping(value = "/addProduct/{value}", method = RequestMethod.GET)
+    @RequestMapping(value = "/productManagementt/{value}", method = RequestMethod.GET)
     public String get(Model model, @PathVariable String value){
         if (value.equals("error")) {
             model.addAttribute("imgError", "Bad image file!");
@@ -56,7 +56,7 @@ public class UploadController {
             model.addAttribute("imgSuccess", "");
             model.addAttribute("imgError", "");
         }
-        return "redirect:/addProduct";
+        return "redirect:/productManagement";
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
@@ -64,21 +64,27 @@ public class UploadController {
 
         if (file.isEmpty() || file.getSize() == 0) {
             result.rejectValue("image", "product.form.badimg");
-            return "addProduct";
+            return "productManagement";
         } else {
             product.setImage(file);
         }
         if (result.hasErrors()) {
             System.out.println("has errors!");
-            return "addProduct";
+            return "productManagement";
         } else {
             System.out.println("has no errors!");
             Product newProduct = productService.createProductFromModel(product);
             if (null != newProduct) {
                 productService.save(newProduct);
             }
-            return "redirect:/addProduct/noerror";
+            return "redirect:/productManagement/noerror";
         }
+    }
+
+    @RequestMapping(value = "/search-product", method = RequestMethod.POST)
+    public String loadProductsOnCriteria(@Valid @ModelAttribute AddProductForm article, Model model) {
+        productService.findProductsFromModel(article);
+        return "productManagement";
     }
 
     @RequestMapping("/download/{fileId}")

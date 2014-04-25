@@ -7,7 +7,7 @@
     <div class="col-lg-12">
         <div class="pull-right">
             <sec:authorize ifAnyGranted="ROLE_ADMIN">
-                <a href="<c:url value="/addProduct"/>">[add new products]</a>
+                <a href="<c:url value="/productManagement"/>">[add new products]</a>
             </sec:authorize>
         </div>
     </div>

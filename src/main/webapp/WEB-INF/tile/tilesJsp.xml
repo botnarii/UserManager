@@ -67,9 +67,9 @@
         <put-attribute name="menu" value="/WEB-INF/pages/template/emptyMenu.jsp"/>
     </definition>
 
-    <definition name="addProduct" extends="baseLayout">
+    <definition name="productManagement" extends="baseLayout">
         <put-attribute name="title" value="Add a Product"/>
-        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/addProduct.jsp"/>
+        <put-attribute name="body" value="/WEB-INF/pages/webflowPages/productManagement.jsp"/>
         <put-attribute name="menu" value="/WEB-INF/pages/template/emptyMenu.jsp"/>
     </definition>
 

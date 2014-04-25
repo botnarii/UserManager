@@ -20,6 +20,7 @@ public interface ProductService {
     List<String> getShippingOptions();
 
     Product createProductFromModel(AddProductForm article);
+    List<Product> findProductsFromModel(AddProductForm article);
 
     void deleteAllProducts();
     void deleteOneProduct(long productId);

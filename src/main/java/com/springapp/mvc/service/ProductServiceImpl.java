@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.sql.rowset.serial.SerialBlob;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -90,5 +91,16 @@ public class ProductServiceImpl implements ProductService {
     public Blob getBlobData(MultipartFile file) throws IOException, SQLException {
         byte[] bytes = file.getBytes();
         return new SerialBlob(bytes);
+    }
+
+    @Override
+    public List<Product> findProductsFromModel(AddProductForm article) {
+        String name =article.getName();
+        BigDecimal price = article.getUnitPrice();
+        String brand = article.getBrand();
+        String offer = article.getCurrentOffer();
+        int display = article.getDisplaySize();
+        productRepository.findAllByMultipleCriteria(name, price, brand, offer, display);
+        return null;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
