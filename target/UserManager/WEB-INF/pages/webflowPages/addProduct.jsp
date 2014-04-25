@@ -5,14 +5,6 @@
 
 <div class="row">
     <div class="panel panel-default">
-        <%--<sec:authorize ifNotGranted="ROLE_ADMIN">--%>
-        <%--<spring:url value="/home" var="home"/>--%>
-        <%--<script type="text/javascript">--%>
-        <%--$(document).ready(function(){--%>
-        <%--window.location.replace("${home}");--%>
-        <%--})--%>
-        <%--</script>--%>
-        <%--</sec:authorize>--%>
         <sec:authorize ifAnyGranted="ROLE_ADMIN">
             <div class="panel-heading">
                 <h2 class="panel-title product-header">Add a Product</h2>
@@ -106,7 +98,7 @@
                             <div class="row">
                                 <div id="form-group-prodimg" class="form-group col-lg-4">
                                     <form:label path="image">Product Image</form:label>
-                                    <input name="imgfile" id="imgfile" type="file" cssClass="form-control"/>
+                                    <input name="imgfile" id="imgfile" type="file"/>
                                     <form:errors id="error-email" path="image" cssClass="help-block error-box"/>
                                 </div>
                             </div>
