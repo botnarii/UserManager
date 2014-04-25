@@ -25,7 +25,7 @@
         <property name="jpaPropertyMap" >
             <map>
                 <entry key="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
-                <entry key="hibernate.hbm2ddl.auto" value="create" />
+                <entry key="hibernate.hbm2ddl.auto" value="update" />
                 <entry key="hibernate.format_sql" value="true"/>
                 <entry key="javax.persistence.validation.mode" value="NONE"/>
             </map>

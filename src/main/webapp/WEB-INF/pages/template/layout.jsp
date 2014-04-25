@@ -27,45 +27,6 @@
             background: #808080;
         }
 
-        .leftPane {
-            margin: 10px;
-            height: 400px;
-        }
-
-        .leftPane,.rightPane {
-            float: left;
-        }
-
-        .leftPane {
-            width: 100px;
-        }
-
-        .rightPane {
-            width: 815px;
-        }
-
-        #leftMenu {
-            max-width: 80% !important;
-            padding-left: 50px;
-        }
-
-        #leftMenu ul {
-            list-style: none;
-        }
-
-        .inputCheck li {
-            text-align: left;
-            padding-left: 50px;
-        }
-
-        #leftMenu h4 {
-            text-align: center;
-        }
-
-        #leftMenu a {
-            padding-left: 20% !important;
-        }
-
         .menuHeader {
 
         }
@@ -98,16 +59,6 @@
             background-color: #dff0d8;
             margin-bottom: 10px;
             padding: 10px;
-        }
-
-        .shoppingCart {
-            background: #e7ffcc;
-            border-left: 1px solid #000000;
-            border-bottom: 1px solid #000000;
-            border-right: 1px solid #000000;
-            width: 500px;
-            padding: 5px;
-            margin: 5px;
         }
         .addressBox {
             width: 450px;

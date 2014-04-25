@@ -59,11 +59,6 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void submitOrderForPayment() {
-
-    }
-
-    @Override
     public void deleteAllProducts() {
         productRepository.deleteAll();
     }

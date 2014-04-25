@@ -22,9 +22,11 @@
                         <c:forEach var="product" items="${products}">
                             <li class="pull-left" style="width: 260px; list-style: none">
                                 <div class="product" style="width: 245px">
-                                    <div class="product_img">
-                                        <img src="<c:url value='/download/${product.productId}'/>" width="240px" height="240px">
-                                    </div>
+                                    <a href="<c:url value="/page?productId=${product.productId}"/>">
+                                        <div class="product_img">
+                                            <img src="<c:url value='/download/${product.productId}'/>" width="240px" height="240px">
+                                        </div>
+                                    </a>
                                     <div class="product_label">
                                         <div class="pull-left ">
                                             <div class="product_descr">
