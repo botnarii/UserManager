@@ -36,6 +36,7 @@
                                 <div id="form-group-prodbrand" class="form-group col-lg-3">
                                     <label class="control-label" for="brand">Product brand:</label>
                                     <form:select path="brand" id="brand" name="brand" cssClass="form-control">
+                                        <form:option selected="true" value="-----"/>
                                         <form:option value="Acer"/>
                                         <form:option value="Apple"/>
                                         <form:option value="Asus"/>
@@ -50,6 +51,7 @@
                                 <div id="form-group-prodoffer" class="form-group col-lg-3">
                                     <label class="control-label" for="currentOffer">Current Offer:</label>
                                     <form:select path="currentOffer" id="currentOffer" name="currentOffer" cssClass="form-control">
+                                        <form:option selected="true" value="-----"/>
                                         <form:option value="On sale"/>
                                         <form:option value="On clearance"/>
                                         <form:option value="Refurbished"/>
@@ -61,6 +63,7 @@
                                 <div id="form-group-proddisplay" class="form-group col-lg-3">
                                     <label class="control-label" for="displaySize">Display Size:</label>
                                     <form:select path="displaySize" id="displaySize" name="displaySize" cssClass="form-control">
+                                        <form:option selected="true" value="0"/>
                                         <form:option value="13"/>
                                         <form:option value="14"/>
                                         <form:option value="15"/>
@@ -98,7 +101,7 @@
                 <h2 class="panel-title product-header">Edit/Delete</h2>
             </div>
             <div class="panel-body">
-                <form:form commandName="productForm" id="searchProduct" method="post" action="search-product" enctype="multipart/form-data">
+                <form:form commandName="searchQuery" id="searchProduct" method="post" action="search-product" enctype="multipart/form-data">
                     <div class="row form-group">
                         <div class="container-fluid">
                             <div class="row">
@@ -112,14 +115,10 @@
                                     <form:input name="unitPrice" id="unitPrice" placeholder="Product unit price"  path="unitPrice" cssClass="form-control"/>
                                     <form:errors id="error-email" path="unitPrice" cssClass="help-block error-box"/>
                                 </div>
-                                <div id="form-group-prodinstock-del" class="form-group col-lg-3">
-                                    <label class="control-label" for="inStockQty">Products in stock:</label>
-                                    <form:input name="inStockQty" id="inStockQty" placeholder="Products in stock"  path="inStockQty" cssClass="form-control"/>
-                                    <form:errors id="error-email" path="inStockQty" cssClass="help-block error-box"/>
-                                </div>
                                 <div id="form-group-prodbrand-del" class="form-group col-lg-3">
                                     <label class="control-label" for="brand">Product brand:</label>
                                     <form:select path="brand" id="brand" name="brand" cssClass="form-control">
+                                        <form:option selected="true" value="-----"/>
                                         <form:option value="Acer"/>
                                         <form:option value="Apple"/>
                                         <form:option value="Asus"/>
@@ -134,6 +133,7 @@
                                 <div id="form-group-prodoffer-del" class="form-group col-lg-3">
                                     <label class="control-label" for="currentOffer">Current Offer:</label>
                                     <form:select path="currentOffer" id="currentOffer" name="currentOffer" cssClass="form-control">
+                                        <form:option selected="true" value="-----"/>
                                         <form:option value="On sale"/>
                                         <form:option value="On clearance"/>
                                         <form:option value="Refurbished"/>
@@ -145,6 +145,7 @@
                                 <div id="form-group-proddisplay-del" class="form-group col-lg-3">
                                     <label class="control-label" for="displaySize">Display Size:</label>
                                     <form:select path="displaySize" id="displaySize" name="displaySize" cssClass="form-control">
+                                        <form:option selected="true" value="0"/>
                                         <form:option value="13"/>
                                         <form:option value="14"/>
                                         <form:option value="15"/>
@@ -159,6 +160,26 @@
                                 <div class="col-lg-4"></div>
                                 <div class="col-lg-4"><input type="submit" value="Search" class="btn btn-default"/></div>
                                 <div class="col-lg-4"></div>
+                            </div>
+                            <div class="row">
+                                <div class="container-fluid">
+                                    <div style="margin: 25px 5px;">
+                                        <table class="table table-condensed">
+                                            <thead>
+                                            <tr><th>Product</th><th>Price</th><th>Brand</th><th>Current Offer</th><th>Display Size</th><th>Your Action</th></tr>
+                                            </thead>
+                                            <tbody>
+                                            <c:forEach items="${searchResult}" var="item">
+                                                <tr>
+                                                    <th>${item.name}</th><td>${item.unitPrice}</td><td>${item.brand}</td><td>${item.currentOffer}</td>
+                                                    <td>${item.displaySize}</td>
+                                                    <td>[<a href="<c:url value='/editProduct'/>">edit</a>]|[<a href="<c:url value='/deleteProduct'/>">delete</a>]</td>
+                                                </tr>
+                                            </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>

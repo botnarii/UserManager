@@ -11,11 +11,11 @@ import java.math.BigDecimal;
 public class AddProductForm {
 
     @NotEmpty
-    @Size(min = 2, max = 20, message = "Too long or too short!")
+    @Size(min = 2, message = "Too short!")
     private String name;
 
     @NotEmpty
-    @Size(max = 600, message = "Description too long!")
+    @Size(max = 3000, message = "Description too long!")
     private String description;
 
     @Min(1)

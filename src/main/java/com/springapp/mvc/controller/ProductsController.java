@@ -2,6 +2,7 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.AddProductForm;
 import com.springapp.mvc.model.Product;
+import com.springapp.mvc.model.SearchModel;
 import com.springapp.mvc.model.UploadItem;
 import com.springapp.mvc.service.ProductService;
 import org.apache.commons.io.IOUtils;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.List;
 
 
 @Controller
@@ -38,6 +40,7 @@ public class ProductsController {
     @RequestMapping(value = "/productManagement", method = RequestMethod.GET)
     public String addProduct(Model model) {
         model.addAttribute("productForm", new AddProductForm());
+        model.addAttribute("searchQuery", new SearchModel());
         if (isAdmin()) {
             return "productManagement";
         }
@@ -60,8 +63,8 @@ public class ProductsController {
     }
 
     @RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public String upload(@Valid @ModelAttribute("productForm") AddProductForm product, BindingResult result, @RequestParam("imgfile") MultipartFile file) {
-
+    public String upload(@Valid @ModelAttribute("productForm") AddProductForm product, BindingResult result, @RequestParam("imgfile") MultipartFile file, Model model) {
+        model.addAttribute("searchQuery", new SearchModel());
         if (file.isEmpty() || file.getSize() == 0) {
             result.rejectValue("image", "product.form.badimg");
             return "productManagement";
@@ -77,13 +80,19 @@ public class ProductsController {
             if (null != newProduct) {
                 productService.save(newProduct);
             }
-            return "redirect:/productManagement/noerror";
+            return "redirect:/productManagement";
         }
     }
 
     @RequestMapping(value = "/search-product", method = RequestMethod.POST)
-    public String loadProductsOnCriteria(@Valid @ModelAttribute AddProductForm article, Model model) {
-        productService.findProductsFromModel(article);
+    public String loadProductsOnCriteria(@ModelAttribute SearchModel searchQuery, Model model) {
+        List<Product> searchResult = productService.findProductsFromModel(searchQuery);
+        model.addAttribute("searchResult", searchResult);
+
+        /**To avoid binding error */
+        model.addAttribute("searchQuery", new SearchModel());
+        model.addAttribute("productForm", new AddProductForm());
+
         return "productManagement";
     }
 

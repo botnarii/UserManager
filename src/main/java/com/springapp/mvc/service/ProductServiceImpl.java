@@ -3,6 +3,7 @@ package com.springapp.mvc.service;
 
 import com.springapp.mvc.model.AddProductForm;
 import com.springapp.mvc.model.Product;
+import com.springapp.mvc.model.SearchModel;
 import com.springapp.mvc.model.ShoppingCart;
 import com.springapp.mvc.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +17,7 @@ import java.math.BigDecimal;
 import java.sql.Blob;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service("productService")
 public class ProductServiceImpl implements ProductService {
@@ -94,13 +94,59 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> findProductsFromModel(AddProductForm article) {
-        String name =article.getName();
-        BigDecimal price = article.getUnitPrice();
-        String brand = article.getBrand();
-        String offer = article.getCurrentOffer();
-        int display = article.getDisplaySize();
-        productRepository.findAllByMultipleCriteria(name, price, brand, offer, display);
-        return null;  //To change body of implemented methods use File | Settings | File Templates.
+    public List<Product> findProductsFromModel(SearchModel searchQuery) {
+        /**Input declaration*/
+        String name = searchQuery.getName();
+        BigDecimal price = searchQuery.getUnitPrice();
+        String brand = searchQuery.getBrand();
+        String offer = searchQuery.getCurrentOffer();
+        int display = searchQuery.getDisplaySize();
+
+        /**Unsorted collections */
+        List<Product> productsSortedByName = new ArrayList<Product>();
+        List<Product> productsSortedByPrice = new ArrayList<Product>();
+        List<Product> productsSortedByBrand = new ArrayList<Product>();
+        List<Product> productsSortedByOffer = new ArrayList<Product>();
+        List<Product> productsSortedByDisplay = new ArrayList<Product>();
+        List<Product> allSortedProducts = new ArrayList<Product>();
+
+        /**Validation*/
+        if (!name.isEmpty()) {
+            productsSortedByName = productRepository.findAllByName(name);
+        }
+        if (null != price) {
+            productsSortedByPrice = productRepository.findAllByUnitPriceLessThanOrUnitPrice(price, price);
+        }
+        if (!brand.isEmpty()) {
+            productsSortedByBrand = productRepository.findAllByBrand(brand);
+        }
+        if (!offer.isEmpty()) {
+            productsSortedByOffer = productRepository.findAllByCurrentOffer(offer);
+        }
+        if (display != 0) {
+            productsSortedByDisplay = productRepository.findAllByDisplaySize(display);
+        }
+
+        /**Group all together */
+        allSortedProducts.addAll(productsSortedByName);
+        allSortedProducts.addAll(productsSortedByPrice);
+        allSortedProducts.addAll(productsSortedByBrand);
+        allSortedProducts.addAll(productsSortedByOffer);
+        allSortedProducts.addAll(productsSortedByDisplay);
+
+        removeDuplicateWithOrder(allSortedProducts);
+        return allSortedProducts;
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void removeDuplicateWithOrder(List<Product> list) {
+        Set set = new HashSet();
+        List newList = new ArrayList();
+        for (Object element : list) {
+            if (set.add(element))
+                newList.add(element);
+        }
+        list.clear();
+        list.addAll(newList);
     }
 }
