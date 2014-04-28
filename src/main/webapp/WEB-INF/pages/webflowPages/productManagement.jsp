@@ -11,7 +11,6 @@
             </div>
             <div class="panel-body">
                 <div id="result">
-                    <span style="color: red"><c:out value="${param.imgError}"/></span>
                     <span style="color: green; font-weight: bold"><c:out value="${param.imgSuccess}"/></span>
                 </div>
                 <form:form commandName="productForm" id="imgUpload" method="post" action="upload" enctype="multipart/form-data">

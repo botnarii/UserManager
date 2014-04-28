@@ -79,6 +79,7 @@ public class ProductsController {
             Product newProduct = productService.createProductFromModel(product);
             if (null != newProduct) {
                 productService.save(newProduct);
+                model.addAttribute("imgSuccess", "Uploaded Successfully!");
             }
             return "redirect:/productManagement";
         }

@@ -78,7 +78,7 @@
                                             <div class="pull-left" style="padding-right: 15px;">
                                                 <input type="number" id="qty" name="addQty" value="1" class="form-control" style="height: 30px; width: 90px" >
                                                 <input type="hidden" name="_eventId" value="addToCart">
-                                                <input type="hidden" name="productId" value="${product.productId}">
+                                                <input type="hidden" name="productId" value="${productPage.productId}">
                                             </div>
                                             <div>
                                                 <input type="submit" class="btn btn-primary" value="add to cart">
