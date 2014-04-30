@@ -2,12 +2,18 @@ package com.springapp.mvc.model;
 
 
 
+import com.springapp.mvc.service.ProductService;
 import com.springapp.mvc.service.ShoppingCartItem;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.*;
 
 public class ShoppingCart implements Serializable {
+
+    @Autowired
+    private ProductService productService;
 
     private Map<Long, ShoppingCartItem> items = new HashMap<Long, ShoppingCartItem>();
 
@@ -31,12 +37,14 @@ public class ShoppingCart implements Serializable {
     }
 
     public void addItems(Product product, int qty) {
-        long productId = product.getProductId();
-        ShoppingCartItem item = items.get(productId);
-        if (item != null) {
-            item.incrementQuantity(qty);
-        } else {
-            items.put(productId, new ShoppingCartItem(product, qty));
+        if (qty > 0 && productService.inStock(product.getProductId())) {
+            long productId = product.getProductId();
+            ShoppingCartItem item = items.get(productId);
+            if (item != null) {
+                item.incrementQuantity(qty);
+            } else {
+                items.put(productId, new ShoppingCartItem(product, qty));
+            }
         }
     }
 

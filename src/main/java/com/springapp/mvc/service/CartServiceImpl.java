@@ -39,6 +39,11 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public int getCartSize() {
+        return shoppingCart.getItemCount();
+    }
+
+    @Override
     public List<String> getShippingOptions() {
         return null;
     }

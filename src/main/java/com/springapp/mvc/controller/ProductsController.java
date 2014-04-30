@@ -1,9 +1,7 @@
 package com.springapp.mvc.controller;
 
-import com.springapp.mvc.model.AddProductForm;
-import com.springapp.mvc.model.Product;
-import com.springapp.mvc.model.SearchModel;
-import com.springapp.mvc.model.UploadItem;
+import com.springapp.mvc.model.*;
+import com.springapp.mvc.service.CartService;
 import com.springapp.mvc.service.ProductService;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +20,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.sql.Blob;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -30,6 +29,8 @@ public class ProductsController {
 
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CartService cartService;
 
     UploadItem uploadedImg;
     public ProductsController(){
@@ -117,6 +118,23 @@ public class ProductsController {
         }
 
         return null;
+    }
+
+//    @RequestMapping(value = "/delete-from-cart", method = RequestMethod.GET)
+//    @ResponseBody
+//    public int deleteFromCart(@RequestParam long productId) {
+//        cartService.deleteOneProduct(productId);
+//        return cartService.getCartSize();
+//    }
+
+    @RequestMapping(value = "/delete-from-cart", method = RequestMethod.GET)
+    @ResponseBody
+    public List<String> deleteFromCart(@RequestParam long productId) {
+        cartService.deleteOneProduct(productId);
+        List<String> result = new ArrayList<String>();
+        result.add(cartService.getCartSize()+"");
+        result.add(cartService.getShoppingCart().getTotalPriceInDollars());
+        return result;
     }
 
     private boolean isAdmin() {

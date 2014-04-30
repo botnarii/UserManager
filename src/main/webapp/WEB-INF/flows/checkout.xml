@@ -9,6 +9,7 @@
     <on-start>
         <set name="conversationScope.products" value="cartService.getProducts()" />
         <set name="conversationScope.shoppingCart" value="shoppingCart"/>
+        <set name="requestScope.productID" value="requestParameters.productId"/>
     </on-start>
 
     <view-state id="viewCart" view="viewCart">
@@ -28,12 +29,12 @@
     <subflow-state id="setAddress" subflow="setAddress">
         <transition on="addressSaved" to="payment"/>
         <transition on="checkOut" to="viewCart"/>
-        <transition on="cancelOperation" to="shop"/>
+        <transition on="cancelCheckout" to="shop"/>
     </subflow-state>
 
     <subflow-state id="payment" subflow="payment">
         <transition on="setAddress" to="setAddress"/>
-        <transition on="cancelOperation" to="shop"/>
+        <transition on="cancelCheckout" to="shop"/>
         <transition on="checkOut" to="confirmOrder"/>
     </subflow-state>
 

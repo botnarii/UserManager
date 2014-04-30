@@ -29,6 +29,10 @@ public class CustomerServiceImpl implements CustomerService {
     private OrderLineRepository orderLineRepository;
     @Autowired
     private ShippingDetailsRepository shippingDetailsRepository;
+    @Autowired
+    private CartService cartService;
+    @Autowired
+    private ProductRepository productRepository;
 
     @Override
     public Customer createCustomerFromFormModel(RegistrationForm form) {
@@ -171,10 +175,17 @@ public class CustomerServiceImpl implements CustomerService {
         Shipping shipping = new Shipping(new Timestamp(today.getTime()));
 
         for(ShoppingCartItem item: shoppingCart.getItems()) {
+
+            Product product = cartService.getProduct(item.getProduct().getProductId());
+            int oldQty = product.getInStockQty();
+            int boughtQty = item.getQuantity();
+
             OrderLine orderLine = new OrderLine(item.getQuantity());
             orderLine.setPk(new OrderLineId(order, item.getProduct()));
 
             ShippingDetails shippingDetails = new ShippingDetails(new ShippingDetailsId(shipping, order, item.getProduct()), item.getQuantity());
+
+            productRepository.setNewProductQty(product.getProductId(), oldQty-boughtQty);
 
             orderRepository.saveAndFlush(order);
             orderLineRepository.saveAndFlush(orderLine);

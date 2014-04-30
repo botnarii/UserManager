@@ -15,6 +15,7 @@ public interface CartService {
     List<Product> getRecommendations();
 
     Product getProduct(long productId);
+    int getCartSize();
 
     List<String> getShippingOptions();
 

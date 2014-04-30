@@ -23,7 +23,7 @@
         <transition on="edit" to="addressPage1">
             <evaluate expression="customerService.editAddr(address1, 1)"/>
         </transition>
-        <transition on="cancelOperation" to="cancelOperation" bind="false"/>
+        <transition on="cancelCheckout" to="cancelCheckout" bind="false"/>
         <transition on="nextStep" to="addressPage2" bind="false"/>
         <transition on="prevStep" to="checkOut" bind="false"/>
     </view-state>
@@ -39,13 +39,13 @@
         <transition on="edit" to="addressPage2">
             <evaluate expression="customerService.editAddr(address2, 2)"/>
         </transition>
-        <transition on="cancelOperation" to="cancelOperation" bind="false"/>
+        <transition on="cancelCheckout" to="cancelCheckout" bind="false"/>
         <transition on="nextStep" to="addressSaved" bind="false"/>
         <transition on="prevStep" to="addressPage1" bind="false"/>
     </view-state>
 
     <end-state id="addressSaved" view="externalRedirect:contextRelative:/home"/>
     <end-state id="checkOut" view="externalRedirect:contextRelative:/home"/>
-    <end-state id="cancelOperation" view="externalRedirect:contextRelative:/home"/>
+    <end-state id="cancelCheckout" view="externalRedirect:contextRelative:/home"/>
 
 </flow>

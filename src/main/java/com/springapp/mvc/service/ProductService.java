@@ -22,6 +22,7 @@ public interface ProductService {
 
     Product createProductFromModel(AddProductForm article);
     List<Product> findProductsFromModel(SearchModel searchQuery);
+    boolean inStock(long productId);
 
     void deleteAllProducts();
     void deleteOneProduct(long productId);

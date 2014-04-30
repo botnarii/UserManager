@@ -55,6 +55,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public boolean inStock(long productId) {
+        return getProduct(productId).getInStockQty() > 0;
+    }
+
+    @Override
     public List<String> getShippingOptions() {
         return null;
     }

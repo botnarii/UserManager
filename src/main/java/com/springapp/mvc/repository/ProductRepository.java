@@ -3,6 +3,7 @@ package com.springapp.mvc.repository;
 
 import com.springapp.mvc.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -27,4 +28,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findAllByBrand(String brand);
     List<Product> findAllByCurrentOffer(String currentOffer);
     List<Product> findAllByDisplaySize(int displaySize);
+
+    @Modifying(clearAutomatically = true)
+    @Query("update Product p set p.inStockQty = ?2 where p.productId = ?1")
+    int setNewProductQty(long productId, int qty);
 }

@@ -29,6 +29,27 @@
             });
         });
 
+        $(function(){
+            $(document).on('click', '.deleteUrl', function(e){
+                e.preventDefault();
+                var src = '<%=request.getContextPath()%>/images/template/delete.png';
+                var image = $('<img src="' + src + '" width=30 height=30/>');
+                var deleteUrl = $(this).attr('href');
+                var cartBox = $('.badge');
+                var cartContainer = $(this).parent();
+                var totalPrice = $('span.total-price');
+                console.log(cartContainer);
+                console.log(cartBox);
+                $.get(deleteUrl, function(response){
+                    console.log(response);
+                    cartBox.html(response[0]);
+                    totalPrice.html(response[1]);
+                    cartContainer.html(image);
+                    console.log(totalPrice);
+                });
+            });
+        });
+
         $(function(){ // document ready
             var cart = $('div.cart_label');
             var prodList = $('div.menuHeader');

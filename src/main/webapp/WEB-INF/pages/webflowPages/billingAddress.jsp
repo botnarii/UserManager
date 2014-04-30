@@ -33,8 +33,8 @@
                                             <div class="list-group">
                                                 <h4>Your Cart - ${shoppingCart.itemCount} items <span class="pull-right"><a href="${flowExecutionUrl}&_eventId=cancelCheckout">[cancel]</a></span></h4>
                                                 <c:forEach var="item" items="${shoppingCart.items}">
-                                                    <div class="list-group-item">
-                                                        <h5 class="list-group-item-heading">${item.product.name} <span class="pull-right"><a href="${flowExecutionUrl}&_eventId=delete&productId=${item.product.productId}">[delete]</a></span></h5>
+                                                    <div class="list-group-item prod-item">
+                                                        <h5 class="list-group-item-heading">${item.product.name} <span class="pull-right"><a class="deleteUrl" href="<c:url value='/delete-from-cart?productId=${item.product.productId}'/>">[delete]</a></span></h5>
                                                         <div class="row">
                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">${item.quantity}x</div>
                                                             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"><img src="<c:url value='/download/${item.product.productId}'/>" width="50px" height="50px"></div>
@@ -49,7 +49,7 @@
                                                         </div>
                                                         <div class="row">
                                                             <div class="pull-right" style="font-weight: bold; padding-right: 10px;">
-                                                                Total: ${shoppingCart.totalPriceInDollars}
+                                                                Total: <span class="total-price">${shoppingCart.totalPriceInDollars}</span>
                                                             </div>
                                                         </div>
                                                     </div>
