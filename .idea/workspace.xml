@@ -1,22 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="097c8066-48a6-4aba-8237-baf254a279bc" name="Default" comment="minor changes on page controller and jsp">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/images/template/delete.png" />
-      <change type="DELETED" beforePath="C:\Users\Lenovo\Documents\Java Web Projects\user-manager\UserManager\UserManager.iml" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/ProductsController.java" afterPath="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/ProductsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/ant.xml" afterPath="$PROJECT_DIR$/.idea/ant.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/compiler.xml" afterPath="$PROJECT_DIR$/.idea/compiler.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/confirmOrder.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/confirmOrder.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/payment.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/payment.jsp" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/flows/payment.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/flows/payment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/shippingAddress.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/shippingAddress.jsp" />
+    <list default="true" id="097c8066-48a6-4aba-8237-baf254a279bc" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/viewCart.jsp" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/viewCart.jsp" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="UserManager.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="/Dummy.txt" changelist="097c8066-48a6-4aba-8237-baf254a279bc" time="1398871029139" ignored="false" />
+    <file path="/Dummy.txt" changelist="097c8066-48a6-4aba-8237-baf254a279bc" time="1398871078749" ignored="false" />
     <file path="/tilesJsp.xml" changelist="097c8066-48a6-4aba-8237-baf254a279bc" time="1398438288870" ignored="false" />
     <file path="/productManagement.jsp" changelist="097c8066-48a6-4aba-8237-baf254a279bc" time="1398690990420" ignored="false" />
     <file path="/ProductsController.java" changelist="097c8066-48a6-4aba-8237-baf254a279bc" time="1398689869860" ignored="false" />
@@ -24,6 +15,7 @@
     <file path="/ProductServiceImpl.java" changelist="097c8066-48a6-4aba-8237-baf254a279bc" time="1398441616164" ignored="false" />
     <file path="/ProductRepository.java" changelist="097c8066-48a6-4aba-8237-baf254a279bc" time="1398441533311" ignored="false" />
     <file path="/DummyFile.xpath" changelist="097c8066-48a6-4aba-8237-baf254a279bc" time="1398700047634" ignored="false" />
+    <file path="/viewCart.jsp" changelist="097c8066-48a6-4aba-8237-baf254a279bc" time="1398872993758" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,7 +24,7 @@
   </component>
   <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
-    <option name="PATCH_PATH" value="" />
+    <option name="PATCH_PATH" value="C:\Users\Lenovo\Documents\Java Web Projects\user-manager\UserManager" />
   </component>
   <component name="DaemonCodeAnalyzer">
     <disable_hints />
@@ -87,10 +79,28 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="home.jsp" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="home.jsp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/home.jsp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="57" selection-start="410" selection-end="410" vertical-scroll-proportion="0.051359516">
+            <state line="20" column="0" selection-start="778" selection-end="778" vertical-scroll-proportion="7.1538463">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="viewCart.jsp" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/viewCart.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="72" column="142" selection-start="5114" selection-end="5114" vertical-scroll-proportion="0.3197492">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="billingAddress.jsp" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/billingAddress.jsp">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="36" column="157" selection-start="2196" selection-end="2212" vertical-scroll-proportion="-4.730769">
               <folding />
             </state>
           </provider>
@@ -150,7 +160,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/controller/HomeController.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/addProduct.jsp" />
         <option value="$PROJECT_DIR$/src/main/java/com/springapp/mvc/model/Product.java" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/home.jsp" />
@@ -166,6 +175,7 @@
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/confirmOrder.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/payment.jsp" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/flows/payment.xml" />
+        <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/viewCart.jsp" />
       </list>
     </option>
   </component>
@@ -911,7 +921,11 @@
       <created>1398710541931</created>
       <updated>1398710541931</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="complete ajax delete">
+      <created>1398871092828</created>
+      <updated>1398871092828</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -919,9 +933,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Changes" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3253833" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3253833" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -939,8 +953,8 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32925257" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32931727" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23787878" sideWeight="0.6746167" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.34582624" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23787878" sideWeight="0.6541738" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.34582624" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Persistence" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23876765" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1003,7 +1017,7 @@
     <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="minor changes on page controller and jsp" />
+    <option name="LAST_COMMIT_MESSAGE" value="complete ajax delete" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -1019,6 +1033,7 @@
     <MESSAGE value="clearing garbage" />
     <MESSAGE value="product management" />
     <MESSAGE value="minor changes on page controller and jsp" />
+    <MESSAGE value="complete ajax delete" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1034,13 +1049,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/template/header.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="117" selection-start="1065" selection-end="1065" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/productManagement.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="174" column="80" selection-start="12979" selection-end="12979" vertical-scroll-proportion="-7.8076925">
@@ -1093,13 +1101,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/billingAddress.jsp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="256" selection-start="2168" selection-end="2311" vertical-scroll-proportion="0.34228188">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/shippingAddress.jsp">
       <provider selected="true" editor-type-id="text-editor">
         <state line="50" column="138" selection-start="3738" selection-end="3738" vertical-scroll-proportion="20.26923">
@@ -1137,7 +1138,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/home.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="57" selection-start="410" selection-end="410" vertical-scroll-proportion="0.051359516">
+        <state line="20" column="0" selection-start="778" selection-end="778" vertical-scroll-proportion="7.1538463">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/billingAddress.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="36" column="157" selection-start="2196" selection-end="2212" vertical-scroll-proportion="-4.730769">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/WEB-INF/pages/webflowPages/viewCart.jsp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="72" column="142" selection-start="5114" selection-end="5114" vertical-scroll-proportion="0.3197492">
           <folding />
         </state>
       </provider>
