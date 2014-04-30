@@ -120,13 +120,6 @@ public class ProductsController {
         return null;
     }
 
-//    @RequestMapping(value = "/delete-from-cart", method = RequestMethod.GET)
-//    @ResponseBody
-//    public int deleteFromCart(@RequestParam long productId) {
-//        cartService.deleteOneProduct(productId);
-//        return cartService.getCartSize();
-//    }
-
     @RequestMapping(value = "/delete-from-cart", method = RequestMethod.GET)
     @ResponseBody
     public List<String> deleteFromCart(@RequestParam long productId) {

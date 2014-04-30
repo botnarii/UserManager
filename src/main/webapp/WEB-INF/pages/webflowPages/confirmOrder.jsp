@@ -37,12 +37,12 @@
                                             <td class="numeric">${item.quantity}</td>
                                             <td class="numeric">${item.unitPriceInDollars}</td>
                                             <td class="numeric">${item.totalPriceInDollars}</td>
-                                            <td class="numeric"><a href="${flowExecutionUrl}&_eventId=delete&productId=${item.product.productId}">[delete]</a></td>
+                                            <td class="numeric"><span class="pull-right"><a class="deleteUrl" href="<c:url value='/delete-from-cart?productId=${item.product.productId}'/>">[delete]</a></span></td>
                                         </tr>
                                     </c:forEach>
                                     <tr class="active">
                                         <th colspan="3">TOTAL:</th>
-                                        <th class="numeric">${shoppingCart.totalPriceInDollars}</th>
+                                        <th class="numeric"><span class="total-price">${shoppingCart.totalPriceInDollars}</span></th>
                                     </tr>
                                 </table>
                                 <div class="pull-right" style="padding: 20px;">

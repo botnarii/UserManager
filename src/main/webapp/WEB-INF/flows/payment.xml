@@ -11,13 +11,13 @@
     </on-start>
 
     <view-state id="payment" view="payment">
-        <transition on="cancelOperation" to="cancelOperation" bind="false"/>
+        <transition on="cancelCheckout" to="cancelCheckout" bind="false"/>
         <transition on="nextStep" to="checkOut" bind="false"/>
         <transition on="prevStep" to="setAddress" bind="false"/>
     </view-state>
 
     <end-state id="setAddress" />
     <end-state id="checkOut" />
-    <end-state id="cancelOperation" />
+    <end-state id="cancelCheckout" />
 
 </flow>
