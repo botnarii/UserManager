@@ -24,9 +24,9 @@
         </property>
         <property name="jpaPropertyMap" >
             <map>
-                <entry key="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+                <entry key="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
                 <entry key="hibernate.hbm2ddl.auto" value="update" />
-                <entry key="hibernate.format_sql" value="true"/>
+                <entry key="hibernate.format_sql" value="false"/>
                 <entry key="javax.persistence.validation.mode" value="NONE"/>
             </map>
         </property>
@@ -39,10 +39,10 @@
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-        <property name="url" value="jdbc:oracle:thin:@//localhost:1521/XE"/>
-        <property name="username" value="student"/>
-        <property name="password" value="123"/>
+        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://$OPENSHIFT_MYSQL_DB_HOST:$OPENSHIFT_MYSQL_DB_PORT/botnarii"/>
+        <property name="username" value="admineyNTA7I"/>
+        <property name="password" value="JYv4CK9HWbCl"/>
     </bean>
 
     <bean id="shoppingCart" class="com.springapp.mvc.model.ShoppingCart" scope="session">
