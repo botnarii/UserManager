@@ -2,6 +2,8 @@ package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.Customer;
 import com.springapp.mvc.model.Product;
+import com.springapp.mvc.model.ProductModel;
+import com.springapp.mvc.service.CachedDBData;
 import com.springapp.mvc.service.CartService;
 import com.springapp.mvc.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ public class HomeController {
     private CartService cartService;
     @Autowired
     private CustomerService customerService;
+    @Autowired
+    private CachedDBData dbData;
 
     public void setCartService(CartService cartService) {
         this.cartService = cartService;
@@ -27,8 +31,9 @@ public class HomeController {
 
     @RequestMapping(value = "home",method = RequestMethod.GET)
     public String printWelcome(ModelMap model) {
+        model.addAttribute("productModel", new ProductModel());
         model.addAttribute("message", "Welcome To The Shop");
-        List<Product> list = cartService.getProducts();
+        List<Product> list = dbData.getProducts();
         model.addAttribute("products", list);
         model.addAttribute("shoppingCart", cartService.getShoppingCart());
         createWebAdmin();
@@ -37,8 +42,9 @@ public class HomeController {
 
     @RequestMapping(value = "/",method = RequestMethod.GET)
     public String goHome(ModelMap model) {
+        model.addAttribute("productModel", new ProductModel());
         model.addAttribute("message", "Welcome To The Shop");
-        List<Product> list = cartService.getProducts();
+        List<Product> list = dbData.getProducts();
         model.addAttribute("products", list);
         model.addAttribute("shoppingCart", cartService.getShoppingCart());
         createWebAdmin();

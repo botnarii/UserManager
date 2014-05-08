@@ -13,6 +13,49 @@
             font-family: Arial, Verdana, sans-serif;
         }
 
+        #product-header {
+            font-weight: bold;
+            margin-left: 5%;
+            font-size: 24px;
+            line-height: 30px;
+        }
+
+        .product-panel {
+            margin: 5px 10px;
+        }
+
+        .product-price h1 {
+            font-weight: bold;
+            line-height: normal;
+            font-size: 30px;
+        }
+
+        .listing-control-wrapper {
+            border-top: 1px solid #c9c9c9;
+            font-size: 12px;
+            padding: 10px 0;
+            max-width: 940px;
+            margin-left: 15px;
+        }
+
+        .listing-row {
+            border-top: 1px solid #c9c9c9;
+        }
+
+        .grid-view {
+            width: 260px;
+            height: 500px;
+            list-style: none;
+            margin-right: 4%;
+        }
+
+        .product-item {
+            width: 245px;
+            height: 450px;
+            border: 1px dotted #c9c9c9;
+            position: relative;
+        }
+
         .container-fluid {
             padding: 0 15px;
         }
@@ -50,13 +93,11 @@
         }
 
         .product_label {
-            width: 242px;;
-            height: 150px;
+            width: 242px;
             font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
             font-size: 14px;
             line-height: 1.42857143;
             color: #353535;
-            background-color: #dff0d8;
             margin-bottom: 10px;
             padding: 10px;
         }

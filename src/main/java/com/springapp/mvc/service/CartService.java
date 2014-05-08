@@ -2,6 +2,7 @@ package com.springapp.mvc.service;
 
 
 import com.springapp.mvc.model.Product;
+import com.springapp.mvc.model.ProductModel;
 import com.springapp.mvc.model.ShoppingCart;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public interface CartService {
     ShoppingCart getShoppingCart();
 
     List<Product> getProducts();
+    List<Product> sortProducts(ProductModel model);
 
     List<Product> getRecommendations();
 

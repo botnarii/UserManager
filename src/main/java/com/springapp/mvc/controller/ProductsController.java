@@ -1,6 +1,7 @@
 package com.springapp.mvc.controller;
 
 import com.springapp.mvc.model.*;
+import com.springapp.mvc.service.CachedDBData;
 import com.springapp.mvc.service.CartService;
 import com.springapp.mvc.service.ProductService;
 import org.apache.commons.io.IOUtils;
@@ -31,6 +32,8 @@ public class ProductsController {
     private ProductService productService;
     @Autowired
     private CartService cartService;
+    @Autowired
+    private CachedDBData dbData;
 
     UploadItem uploadedImg;
     public ProductsController(){
@@ -120,6 +123,33 @@ public class ProductsController {
         return null;
     }
 
+    @RequestMapping(value = "/update-product-cart", method = RequestMethod.POST)
+    public String updateProductCart(@ModelAttribute ProductModel productModel, Model model) {
+        List<Product> productList = dbData.getProducts();
+        List<Product> tempList = new ArrayList<Product>();
+        if (null != productModel.getScreen()) {
+            for (int size : productModel.getScreen()) {
+                for (Product product : productList) {
+                    if (size == 13) {
+                        if (product.getDisplaySize() <= size) {
+                            tempList.add(product);
+                        }
+                    } else if (size == 18) {
+                        if (product.getDisplaySize() >= size) {
+                            tempList.add(product);
+                        }
+                    } else {
+                        if (product.getDisplaySize() == size) {
+                            tempList.add(product);
+                        }
+                    }
+                }
+            }
+        }
+        model.addAttribute("products", tempList);
+        return "home";
+    }
+
     @RequestMapping(value = "/delete-from-cart", method = RequestMethod.GET)
     @ResponseBody
     public List<String> deleteFromCart(@RequestParam long productId) {
@@ -141,5 +171,4 @@ public class ProductsController {
         }
         return isUserAdmin;
     }
-
 }

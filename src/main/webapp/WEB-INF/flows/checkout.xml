@@ -5,11 +5,9 @@
     http://www.springframework.org/schema/webflow/spring-webflow.xsd">
 
     <!--<secured attributes="ROLE_USER"/>-->
-
     <on-start>
         <set name="conversationScope.products" value="cartService.getProducts()" />
         <set name="conversationScope.shoppingCart" value="shoppingCart"/>
-        <set name="requestScope.productID" value="requestParameters.productId"/>
     </on-start>
 
     <view-state id="viewCart" view="viewCart">
