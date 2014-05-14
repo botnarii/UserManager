@@ -24,9 +24,9 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="clearfix" style="width: 200px; padding-top: 5px;">
-                                <a href="#" class="pull-left" style="text-decoration: none; width: 42px; height: 32px; padding: 7px; background: #e5e5e5;">prec</a>
+                                <a href="#" class="pull-left" style="text-decoration: none; width: 42px; height: 32px; padding: 7px; background: #e5e5e5; pointer-events: none">prec</a>
                                 <span style="margin: 25%;">1</span>
-                                <a href="#" class="pull-right" style="text-decoration: none; width: 42px; height: 32px; padding: 7px; background: #e5e5e5;">next</a>
+                                <a href="#" class="pull-right" style="text-decoration: none; width: 42px; height: 32px; padding: 7px; background: #e5e5e5; pointer-events: none">next</a>
                             </div>
                         </div>
                         <div class="col-lg-4">
