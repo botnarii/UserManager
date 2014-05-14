@@ -45,10 +45,26 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="<c:url value='/home'/>">Home</a></li>
-                            <li><a href="#">Contacts</a></li>
-                            <li><a href="#">About</a></li>
+                            <li class="home-page"><a href="<c:url value='/home'/>">Home</a></li>
+                            <li class="contact-page"><a href="#">Contacts</a></li>
+                            <li class="about-page"><a href="#">About</a></li>
                         </ul>
+                        <script>
+                            var pathName = window.location.pathname.split('/');
+                            if(pathName[2] === 'home') {
+                                $(".home-page").addClass("active");
+                                $(".contact-page").removeClass("active");
+                                $(".about-page").removeClass("active");
+                            } else if(pathName[2] === 'contacts') {
+                                $(".contact-page").addClass("active");
+                                $(".home-page").removeClass("active");
+                                $(".about-page").removeClass("active");
+                            } else if(pathName[2] === 'about') {
+                                $(".about-page").addClass("active");
+                                $(".home-page").removeClass("active");
+                                $(".contact-page").removeClass("active");
+                            }
+                        </script>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
             </nav>

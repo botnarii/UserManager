@@ -125,7 +125,7 @@ public class ProductsController {
 
     @RequestMapping(value = "/update-product-cart", method = RequestMethod.POST)
     public String updateProductCart(@ModelAttribute ProductModel productModel, Model model) {
-        List<Product> productList = dbData.getProducts();
+        List<Product> productList = cartService.getProducts();
         List<Product> tempList = new ArrayList<Product>();
         if (null != productModel.getScreen()) {
             for (int size : productModel.getScreen()) {

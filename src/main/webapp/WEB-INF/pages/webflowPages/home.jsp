@@ -23,23 +23,49 @@
                             <div class="pull-left">1 - ${fn:length(products)} out of ${fn:length(products)}</div>
                         </div>
                         <div class="col-lg-4">
-                            <div class="clearfix" style="width: 75px;">
-                                <a href="#" class="pull-left">prec</a>
-                                <span style="margin-left: 25%;">1</span>
-                                <a href="#" class="pull-right">next</a>
+                            <div class="clearfix" style="width: 200px; padding-top: 5px;">
+                                <a href="#" class="pull-left" style="text-decoration: none; width: 42px; height: 32px; padding: 7px; background: #e5e5e5;">prec</a>
+                                <span style="margin: 25%;">1</span>
+                                <a href="#" class="pull-right" style="text-decoration: none; width: 42px; height: 32px; padding: 7px; background: #e5e5e5;">next</a>
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <ul class="pull-right list-unstyled" style="width: 120px;">
                                 <li>
-                                    <a href="javascript:void(0)">
-                                        <span class="pull-left" style="width: 32px; height: 32px; margin-right: 10px; background-image: url('<c:url value="/images/template/preview_list.png"/> ')"></span>
+                                    <a id="listView" class="changeView" href="javascript:void(0)">
+                                        <span id="listViewSpan" class="pull-left" style="width: 32px; height: 32px; margin-right: 10px; background-image: url('<c:url value="/images/template/preview_list.png"/> ')"></span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0)">
-                                        <span class="pull-left" style="width: 32px; height: 32px; background-image: url('<c:url value="/images/template/2x2_grid.png"/> ')"></span>
+                                    <a id="gridView" class="changeView activa" href="javascript:void(0)">
+                                        <span id="gridViewSpan" class="pull-left" style="width: 32px; height: 32px; background-image: url('<c:url value="/images/template/2x2_grid.png"/> ')"></span>
                                     </a>
+                                    <script>
+                                        var productWrapper = "product-wrapper";
+                                        $("a.changeView").click(function(){
+                                            if ( $("." + productWrapper).hasClass("grid-view") ) {
+                                                $(".product-wrapper").removeClass("grid-view").addClass("list-view");
+                                                $(".product-wrapper2").removeClass("product-item");
+                                                $(".img-panel").addClass("pull-left");
+                                                $(".product-price").addClass("pull-left");
+                                                $(".product-descr").addClass("pull-right product-list-view");
+                                                $(".buy-form").removeClass("buy-form-grid");
+                                                $("#listView").addClass("activa");
+                                                $("#gridView").removeClass("activa");
+                                                console.log("list-view");
+                                            } else {
+                                                $(".product-wrapper").removeClass("list-view").addClass("grid-view");
+                                                $(".product-wrapper2").addClass("product-item");
+                                                $(".img-panel").removeClass("pull-left");
+                                                $(".product-price").removeClass("pull-left");
+                                                $(".product-descr").removeClass("pull-right product-list-view");
+                                                $(".buy-form").addClass("buy-form-grid");
+                                                $("#listView").removeClass("activa");
+                                                $("#gridView").addClass("activa");
+                                                console.log("grid-view");
+                                            }
+                                        });
+                                    </script>
                                 </li>
                             </ul>
                         </div>
@@ -49,8 +75,8 @@
                     <div class="container-fluid">
                         <ul id="item-products" class="list-unstyled clearfix" style="max-width: 940px;">
                             <c:forEach var="product" items="${products}">
-                                <li class="pull-left grid-view group-member" style="margin-top: 20px;">
-                                    <div class="product product-item">
+                                <li id="product-wrapper" class="pull-left group-member product-wrapper grid-view" style="margin-top: 20px;">
+                                    <div id="product-wrapper2" class="product-wrapper2 product product-item">
                                         <div class="img-panel">
                                             <a href="<c:url value="/page?productId=${product.productId}"/>">
                                                 <div class="product_img">
@@ -58,35 +84,31 @@
                                                 </div>
                                             </a>
                                         </div>
-                                        <div class="product-panel">
-                                            <div class="product-price">
-                                                <ul class="list-inline list-unstyled">
-                                                    <li><div style="width: 15px; height: 20px; background-image: url('<c:url value="/images/template/dollar-icon.png"/> ')"></div></li>
-                                                    <li><h1>${product.unitPrice}</h1></li>
-                                                </ul>
-                                            </div>
-                                            <div class="product-descr">
-                                                <strong>${product.name}</strong>
-                                            </div>
-                                            <div class="pull-right buy-form" style="margin-right: 10%; position: absolute; bottom: 10px;">
-                                                <form:form id="cartForm" method="get" action="addToCart">
-                                                    <div class="pull-left" style="padding-right: 15px;">
-                                                        <input type="number" id="qty" name="addQty" value="1" class="form-control" style="height: 30px; width: 90px" >
-                                                        <input type="hidden" name="_eventId" value="addToCart">
-                                                        <input type="hidden" name="productId" value="${product.productId}">
-                                                    </div>
-                                                    <div class="pull-right">
-                                                        <input type="submit" class="btn btn-primary" value="add to cart">
-                                                    </div>
-                                                </form:form>
-                                            </div>
+                                        <div class="product-price clearfix">
+                                            <div style="float: left; width: 15px; height: 20px; margin-top: 29px; background-image: url('<c:url value="/images/template/dollar-icon.png"/> ')"></div>
+                                            <h1 style="float: left">${product.unitPrice}</h1>
+                                        </div>
+                                        <div class="product-descr">
+                                            <strong>${product.name}</strong>
+                                        </div>
+                                        <div class="pull-right buy-form buy-form-grid">
+                                            <form:form id="cartForm" method="get" action="addToCart">
+                                                <div class="pull-left" style="padding-right: 15px;">
+                                                    <input type="number" id="qty" name="addQty" value="1" class="form-control" style="height: 30px; width: 90px" >
+                                                    <input type="hidden" name="_eventId" value="addToCart">
+                                                    <input type="hidden" name="productId" value="${product.productId}">
+                                                </div>
+                                                <div class="pull-right">
+                                                    <input type="submit" class="btn btn-primary" value="add to cart">
+                                                </div>
+                                            </form:form>
                                         </div>
                                     </div>
                                 </li>
                             </c:forEach>
                             <script type="text/javascript">
                                 var a = $('#item-products').find('li.group-member');
-                                do $(a.slice(0,3)).wrapAll('<li class="listing-row clearfix"><ul class="clearfix">');
+                                do $(a.slice(0,3)).wrapAll('<li class="listing-row clearfix"><ul class="list-unstyled clearfix">');
                                 while((a = a.slice(3)).length>0)
                             </script>
                         </ul>

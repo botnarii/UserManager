@@ -30,6 +30,16 @@
             font-size: 30px;
         }
 
+        .buy-form-grid {
+            margin-right: 10%;
+            position: absolute;
+            bottom: 10px;
+        }
+
+        .buy-form-list {
+
+        }
+
         .listing-control-wrapper {
             border-top: 1px solid #c9c9c9;
             font-size: 12px;
@@ -42,6 +52,16 @@
             border-top: 1px solid #c9c9c9;
         }
 
+        #gridView {
+            pointer-events: auto;
+        }
+        #gridView.activa {
+            pointer-events: none;
+            background-color: #e5e5e5;
+        }
+        #gridView.activa span {
+            background-color: #e5e5e5;
+        }
         .grid-view {
             width: 260px;
             height: 500px;
@@ -49,11 +69,31 @@
             margin-right: 4%;
         }
 
+        #listView {
+            pointer-events: auto;
+        }
+        #listView.activa {
+            pointer-events: none;
+        }
+        #listView.activa span {
+            background-color: #e5e5e5;
+        }
+        .list-view {
+            width: 100%;
+        }
+
         .product-item {
             width: 245px;
             height: 450px;
-            border: 1px dotted #c9c9c9;
             position: relative;
+        }
+
+        .product-list-view {
+            width: 50%;
+        }
+
+        .product {
+            border: 1px dotted #c9c9c9;
         }
 
         .container-fluid {

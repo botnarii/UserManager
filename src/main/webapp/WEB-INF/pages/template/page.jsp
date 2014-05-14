@@ -3,12 +3,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-12">
         <div style="border-bottom: 1px solid black; width: 80%;">
             <h1 style="padding-left: 25%">${productPage.name}</h1>
         </div>
     </div>
-    <div class="col-lg-6"></div>
 </div>
 <div class="row">
     <div class="col-lg-6">

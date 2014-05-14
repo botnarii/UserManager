@@ -33,7 +33,7 @@ public class HomeController {
     public String printWelcome(ModelMap model) {
         model.addAttribute("productModel", new ProductModel());
         model.addAttribute("message", "Welcome To The Shop");
-        List<Product> list = dbData.getProducts();
+        List<Product> list = cartService.getProducts();
         model.addAttribute("products", list);
         model.addAttribute("shoppingCart", cartService.getShoppingCart());
         createWebAdmin();
@@ -44,7 +44,7 @@ public class HomeController {
     public String goHome(ModelMap model) {
         model.addAttribute("productModel", new ProductModel());
         model.addAttribute("message", "Welcome To The Shop");
-        List<Product> list = dbData.getProducts();
+        List<Product> list = cartService.getProducts();
         model.addAttribute("products", list);
         model.addAttribute("shoppingCart", cartService.getShoppingCart());
         createWebAdmin();

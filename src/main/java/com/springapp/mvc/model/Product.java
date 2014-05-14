@@ -27,7 +27,7 @@ public class Product implements Comparable<Product>, Serializable {
     @Column(name = "UNIT_PRICE")
     private BigDecimal unitPrice;
     @Column(name = "IN_STOCK_QTY")
-    private int inStockQty;
+    private Integer inStockQty = 0;
     @Column(name="PRODUCT_IMAGE")
     @Lob
     private Blob image;
@@ -36,7 +36,7 @@ public class Product implements Comparable<Product>, Serializable {
     @Column(name = "PRODUCT_OFFER")
     private String currentOffer;
     @Column(name = "PRODUCT_DISPLAY")
-    private int displaySize;
+    private Integer displaySize = 0;
     @Column(name = "ADDED_DATE")
     private Timestamp dateTime;
 
@@ -95,7 +95,7 @@ public class Product implements Comparable<Product>, Serializable {
         return inStockQty;
     }
 
-    public void setInStockQty(int inStockQty) {
+    public void setInStockQty(Integer inStockQty) {
         this.inStockQty = inStockQty;
     }
 
@@ -135,7 +135,7 @@ public class Product implements Comparable<Product>, Serializable {
         return displaySize;
     }
 
-    public void setDisplaySize(int displaySize) {
+    public void setDisplaySize(Integer displaySize) {
         this.displaySize = displaySize;
     }
 

@@ -99,6 +99,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public List<Product> findProductsFromModel(SearchModel searchQuery) {
         /**Input declaration*/
         String name = searchQuery.getName();
